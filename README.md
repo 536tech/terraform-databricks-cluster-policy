@@ -16,7 +16,7 @@ The resource addresses above are part of the DataTF import contract. Do not rena
 ```hcl
 module "cluster_policy" {
   source  = "536tech/cluster-policy/databricks"
-  version = "0.1.0"
+  version = "1.0.0"
 
   name        = "Team Policy"
   description = "Pinned runtime for team clusters"
