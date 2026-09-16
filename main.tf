@@ -1,4 +1,15 @@
 resource "databricks_cluster_policy" "this" {
+  lifecycle {
+    precondition {
+      condition     = var.policy_family_definition_overrides == null || var.policy_family_id != null
+      error_message = "Policy family overrides require policy_family_id."
+    }
+    precondition {
+      condition     = (var.definition != null) != (var.policy_family_id != null)
+      error_message = "Set exactly one of definition or policy_family_id."
+    }
+  }
+
   name                               = var.name
   description                        = var.description
   definition                         = var.definition == null ? null : jsonencode(var.definition)
